@@ -1,7 +1,7 @@
 # flutter_weather_bloc
 
 Introduction to BLOC and CUBIT
-[From YouTube Tutorial](https://www.youtube.com/watch?v=y564ETOCog8&list=PLB6lc7nQ1n4jCBkrirvVGr5b8rC95VAQ5&index=10)
+[with YouTube Tutorial](https://www.youtube.com/watch?v=y564ETOCog8&list=PLB6lc7nQ1n4jCBkrirvVGr5b8rC95VAQ5&index=10)
 
 ## Getting Started
 

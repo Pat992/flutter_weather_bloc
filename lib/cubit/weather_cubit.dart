@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_weather_bloc/data/model/weather.dart';
 import 'package:flutter_weather_bloc/data/weather_repository.dart';
 import 'package:meta/meta.dart';
+import 'package:equatable/equatable.dart';
 
 part 'weather_state.dart';
 

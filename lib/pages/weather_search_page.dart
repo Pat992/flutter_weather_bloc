@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_weather_bloc/cubit/weather_cubit.dart';
+import 'package:flutter_weather_bloc/bloc/weather_bloc.dart';
+//import 'package:flutter_weather_bloc/cubit/weather_cubit.dart';
 import '../data/model/weather.dart';
 
 class WeatherSearchPage extends StatefulWidget {
@@ -21,12 +21,13 @@ class _WeatherSearchPageState extends State<WeatherSearchPage> {
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 16),
         alignment: Alignment.center,
-        // Consumer is combination of BlocBulder and BlocListener
-        child: BlocConsumer<WeatherCubit, WeatherState>(
+        // Consumer is combination of BlocBuilder and BlocListener
+        // To use CUBIT: <WeatherCubit, WeatherState> -> Only the name differs, the rest is identical
+        child: BlocConsumer<WeatherBloc, WeatherState>(
           listener: (context, state) {
             if (state is WeatherException) {
               Scaffold.of(context).showSnackBar(SnackBar(
-                content: Text(state.message),
+                content: Text(state.props[0]),
               ));
             }
           },
@@ -36,7 +37,7 @@ class _WeatherSearchPageState extends State<WeatherSearchPage> {
             } else if (state is WeatherLoading) {
               return buildLoading();
             } else if (state is WeatherLoaded) {
-              return buildColumnWithData(state.weather);
+              return buildColumnWithData(state.props[0]);
             } else {
               return buildInitialInput();
             }
@@ -100,7 +101,10 @@ class CityInputField extends StatelessWidget {
   }
 
   void submitCityName(BuildContext context, String cityName) {
-    final weatherCubit = BlocProvider.of<WeatherCubit>(context);
-    weatherCubit.getWeather(cityName);
+    // CUBIT
+    // final weatherCubit = BlocProvider.of<WeatherCubit>(context);
+    // weatherCubit.getWeather(cityName);
+    final weatherBloc = BlocProvider.of<WeatherBloc>(context);
+    weatherBloc.add(GetWeather(cityName));
   }
 }
